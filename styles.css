@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Figtree", sans-serif;
+}
+
+body {
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    background-image: url('https://i.pinimg.com/originals/db/fa/a2/dbfaa26f0bc7356db4218d793aba45af.gif'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative; /* Added position relative */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+    z-index: -1;
+	backdrop-filter: blur(5px);
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff; /* Background color for the loading screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure it's above other content */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.loading-icon {
+    width: 50px; /* Set the width and height of your loading icon */
+    height: 50px;
+    border: 2px solid #333; /* Customize the loading icon's appearance */
+    border-top: 2px solid #00f; /* Customize the loading icon's appearance */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Add a simple spin animation */
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Transparent background with some opacity */
+    z-index: 1; /* Place it above the content */
+}
+
+.nav-container {
+    max-width: 1050px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    padding: 10px 0;
+}
+
+.logo {
+    font-size: 1.2rem;
+    color: #fff; /* White text color for the logo */
+}
+
+.menu-items {
+    list-style: none;
+    display: flex;
+}
+
+.menu-items li {
+    margin-right: 20px;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #fff; /* White text color for the menu items */
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.menu-items a:hover {
+    font-weight: bolder;
+}
+
+.container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 0.5em;
+    width: 1600px;
+    min-height: 70vh; 
+    transition: all 500ms;
+    margin-top: 62px; 
+}
+
+.container:hover .box {
+	filter: grayscale(100%) opacity(24%);
+}
+
+.overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .overlay-image video {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    position: fixed;
+    bottom: 0;
+    left: 20%;
+  }
+
+.box {
+	position: relative;
+	background: var(--img) center center;
+	background-size: cover;
+	transition: all 400ms;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    bottom: 10%;
+}
+
+.container .box:hover {
+	filter: grayscale(0%) opacity(100%);
+}
+
+.container:has(.box-1:hover) {
+	grid-template-columns: 3fr 2fr 2fr 2fr 2fr;
+}
+
+.container:has(.box-2:hover) {
+	grid-template-columns: 2fr 3fr 2fr 2fr 2fr;
+}
+
+.container:has(.box-3:hover) {
+	grid-template-columns: 3fr 3fr 4fr 3fr 2fr;
+}
+
+.container:has(.box-4:hover) {
+	grid-template-columns: 2fr 2fr 2fr 3fr 2fr;
+}
+
+.container:has(.box-5:hover) {
+	grid-template-columns: 2fr 2fr 2fr 2fr 3fr;
+}
+
+.box:nth-child(odd) {
+	transform: translateY(-16px);
+}
+
+.box:nth-child(even) {
+	transform: translateY(16px);
+}
+
+.box::after {
+	content: attr(data-text);
+	position: absolute;
+	bottom: 90%;
+	background: #000;
+	color: #fff;
+	padding: 10px 10px 10px 14px;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	transform: translateY(60px);
+	opacity: 0;
+	transition: all 400ms;
+}
+
+.box:hover::after {
+	transform: translateY(0);
+	opacity: 1;
+	transition-delay: 400ms;
+
+    
+}
+
+@media screen and (max-width: 768px) {
+    /* Adjust the navbar for smaller screens */
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .menu-items {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu-items li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .menu-items a {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+
+    /* Add a responsive navigation icon (e.g., a hamburger menu) */
+    .menu-toggle {
+        display: block; /* Show the menu toggle on smaller screens */
+        cursor: pointer;
+    }
+
+    .menu-items {
+        display: none; /* Hide the menu items by default on smaller screens */
+    }
+
+    .menu-toggle.active + .menu-items {
+        display: flex; /* Display the menu items when the menu toggle is active */
+    }
+}

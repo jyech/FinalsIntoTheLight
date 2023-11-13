@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+@import url("https://fonts.googleapis.com/css2?family=Figtree&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+body {
+  background-image: url('../Media/aishabg.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+    z-index: -1;
+	backdrop-filter: blur(5px);
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff; /* Background color for the loading screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Make sure it's above other content */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-icon {
+    width: 50px; /* Set the width and height of your loading icon */
+    height: 50px;
+    border: 2px solid #333; /* Customize the loading icon's appearance */
+    border-top: 2px solid #00f; /* Customize the loading icon's appearance */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Add a simple spin animation */
+}
+
+.navbar {
+    font-family: 'Figtree', sans-serif; /* Apply Figtree font to the navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Transparent background with some opacity */
+    z-index: 1; /* Place it above the content */
+}
+
+.nav-container {
+    max-width: 1050px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    padding: 10px 0;
+}
+
+.logo {
+    font-size: 1.2rem;
+    color: #fff; /* White text color for the logo */
+}
+
+.menu-items {
+    list-style: none;
+    display: flex;
+}
+
+.menu-items li {
+    margin-right: 20px;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #fff; /* White text color for the menu items */
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.menu-items a:hover {
+    font-weight: bolder;
+}
+
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    max-width: 1400px; /* Adjust the max-width to make the carousel wider */
+    max-height: 800px; /* Adjust the max-height to make the carousel taller */
+    overflow: hidden;
+    position: relative;
+  }
+
+.carousel-item {
+  visibility: visible;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-end;
+  position: relative;
+  background-color: #fff;
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+  position: absolute;
+  z-index: 0;
+  transition: 0.6s all linear;
+}
+
+.carousel-item__info {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-flex-direction: column;
+  order: 1;
+  left: 0;
+  margin: auto;
+  padding: 0 60px;
+  width: 40%;
+}
+
+
+.carousel-item__image {
+    width: 70%; /* Adjust the width to maintain the desired aspect ratio */
+    height: 100%;
+    order: 2;
+    align-self: flex-end;
+    flex-basis: 70%;
+    -webkit-order: 2;
+    -webkit-align-self: flex-end;
+    -webkit-flex-basis: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    transform: translateX(100%);
+    transition: 0.6s all ease-in-out;
+  }
+
+.carousel-item__subtitle {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0;
+  color: #7E7E7E;
+  font-weight: 700;
+  transform: translateY(20%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s all ease-in-out;
+}
+
+.carousel-item__title {
+  margin: 20px 0 0 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  line-height: 50px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  color: #2C2C2C;
+  transform: translateY(20%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.6s all ease-in-out;
+}
+
+.carousel-item__description {
+  transform: translateY(20%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.6s all ease-in-out;
+  margin-top: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #7e7e7e;
+  line-height: 28px;
+  margin-bottom: 40px;
+}
+
+.carousel-item--1 .carousel-item__image {
+  background-image: url('https://i.imgur.com/88QGTg5.jpg');
+}
+
+.carousel-item--2 .carousel-item__image {
+  background-image: url('https://i.imgur.com/iy0oVpW.jpg');
+}
+
+.carousel-item--3 .carousel-item__image {
+  background-image: url('https://i.imgur.com/PAHM3r6.jpg');
+}
+
+.carousel-item--4 .carousel-item__image {
+  background-image: url('https://preview.redd.it/hci6e9m3j1v71.png?width=615&format=png&auto=webp&s=648495816d0e40e02bb0f403a50a3a4f306a244e');
+}
+
+.carousel-item--5 .carousel-item__image {
+  background-image: url('https://i.imgur.com/q8pn1S3.jpg');
+}
+
+.carousel-item__container {
+
+}
+
+.carousel__nav {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  background-color: #fff;
+  bottom: 0;
+}
+
+.carousel__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  fill: #5d5d5d;
+}
+
+.carousel__arrow {
+  cursor: pointer;
+  display: inline-block;
+  padding: 14px 18px;
+  position: relative;
+}
+
+.carousel__arrow:nth-child(1):after {
+  content: '';
+  right: -3px;
+  position: absolute;
+  width: 1px;
+  background-color: #b0b0b0;
+  height: 16px;
+  top: 50%;
+  margin-top: -8px;
+}
+
+.active {
+  z-index: 1;
+  display: flex;
+  visibility: visible;
+}
+
+.active .carousel-item__subtitle,
+.active .carousel-item__title,
+.active .carousel-item__description,
+.active .carousel-item__btn {
+  transform: translateY(0);
+  opacity: 1;
+  transition: 0.6s all ease-in-out;
+  visibility: visible;
+}
+
+.active .carousel-item__image {
+  transition: 0.6s all ease-in-out;
+  transform: translateX(0);
+
+  @media screen and (max-width: 768px) {
+    /* Adjust the navbar for smaller screens */
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .menu-items {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu-items li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .menu-items a {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+
+    /* Add a responsive navigation icon (e.g., a hamburger menu) */
+    .menu-toggle {
+        display: block; /* Show the menu toggle on smaller screens */
+        cursor: pointer;
+    }
+
+    .menu-items {
+        display: none; /* Hide the menu items by default on smaller screens */
+    }
+
+    .menu-toggle.active + .menu-items {
+        display: flex; /* Display the menu items when the menu toggle is active */
+    }
+
+}
+}
